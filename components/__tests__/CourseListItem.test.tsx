@@ -43,6 +43,7 @@ describe("<CourseListItem />", () => {
     const skillsContainer = container.querySelector(
       "div:nth-child(2) > div:nth-child(3)"
     );
+
     expect(skillsContainer.children.length).toBe(5);
   });
 });

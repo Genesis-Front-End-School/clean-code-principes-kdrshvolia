@@ -36,6 +36,7 @@ describe("useTimestamp", () => {
 
   test("Set default timestamp correctly", () => {
     const { result } = renderHook(() => useTimestamp({ src, videoRef }));
+
     expect(result.current.timeStamp).toBe(0);
   });
 
@@ -47,6 +48,7 @@ describe("useTimestamp", () => {
     act(() => {
       result.current.handlePauseVideo(event);
     });
+
     expect(result.current.timeStamp).toBe(8);
   });
 });
