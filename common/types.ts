@@ -36,6 +36,6 @@ interface Lesson {
   meta: null;
 }
 
-export interface CourseItem extends BaseCourse {
+export interface PreviewCourse extends BaseCourse {
   lessons: Lesson[];
 }

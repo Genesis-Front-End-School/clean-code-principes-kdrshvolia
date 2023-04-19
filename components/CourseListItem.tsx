@@ -1,7 +1,7 @@
 import React from "react";
 import { Course } from "../common/types";
 import { Box, Chip, Rating, Typography } from "@mui/material";
-import { getCourseImageLink } from "../utils/utils";
+import { getCourseImageLink } from "../utils";
 import Link from "next/link";
 import { Video } from "./Video";
 

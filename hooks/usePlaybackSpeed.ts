@@ -21,8 +21,7 @@ export const usePlaybackSpeed = ({
         e.altKey &&
         e.code === "ArrowUp" &&
         playbackSpeed < maxPlaybackSpeed &&
-        videoRef &&
-        videoRef.current
+        videoRef?.current
       ) {
         e.preventDefault();
         setPlaybackSpeed(playbackSpeed + playbackStep);
@@ -42,7 +41,7 @@ export const usePlaybackSpeed = ({
         e.altKey &&
         e.code === "ArrowDown" &&
         playbackSpeed > minPlaybackSpeed &&
-        videoRef && videoRef.current
+        videoRef?.current
       ) {
         e.preventDefault();
         setPlaybackSpeed(playbackSpeed - playbackStep);
@@ -56,7 +55,7 @@ export const usePlaybackSpeed = ({
   }, [playbackSpeed, setPlaybackSpeed]);
 
   useEffect(() => {
-    if (videoRef && videoRef.current) {
+    if (videoRef?.current) {
       videoRef.current.playbackRate = playbackSpeed;
     }
   }, [playbackSpeed]);

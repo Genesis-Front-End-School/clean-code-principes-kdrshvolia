@@ -1,6 +1,6 @@
 import React from "react";
 import { Course } from "../../common/types";
-import { getCoursesList } from "../../api/requests";
+import { coursesService } from "../../api/requests";
 import { CoursesList } from "../../components/CoursesList";
 import { GetServerSideProps } from "next";
 
@@ -14,9 +14,9 @@ const Page = ({ coursesList }: PageProps) => (
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const authToken = req.cookies?.authToken;
-  let coursesList = [];
+  let coursesList = [] as Course[];
   if (authToken) {
-    coursesList = await getCoursesList(authToken);
+    coursesList = await coursesService.getCoursesList(authToken);
   }
 
   return {

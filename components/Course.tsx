@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { CourseItem } from "../common/types";
+import React, { FC, useState } from "react";
+import { PreviewCourse } from "../common/types";
 import {
   Box,
   List,
@@ -9,13 +9,13 @@ import {
 } from "@mui/material";
 import LockIcon from "@mui/icons-material/Lock";
 import { Video } from "./Video";
-import { getCourseLessonImageLink, getLessonDuration } from "../utils/utils";
+import { getCourseLessonImageLink, getLessonDuration } from "../utils";
 
 interface CourseProps {
-  course: CourseItem;
+  course: PreviewCourse;
 }
 
-export const Course = ({ course }: CourseProps) => {
+export const Course: FC<CourseProps> = ({ course }: CourseProps) => {
   const { lessons } = course;
 
   const [selectedLessonIndex, setSelectedLessonIndex] = useState(0);

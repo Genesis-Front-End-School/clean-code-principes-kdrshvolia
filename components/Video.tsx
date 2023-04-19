@@ -50,12 +50,12 @@ export const Video = ({
   }, [src]);
 
   const togglePictureInPicture = () => {
+    if (!videoRef.current) return;
+
     if (document.pictureInPictureElement) {
       document.exitPictureInPicture();
     } else if (document.pictureInPictureEnabled) {
-      if (videoRef.current) {
-        videoRef.current.requestPictureInPicture();
-      }
+      videoRef.current.requestPictureInPicture();
     }
   };
 
@@ -73,7 +73,7 @@ export const Video = ({
         onPlay={handlePlayVideo}
         ref={videoRef}
         poster={poster}
-      ></video>
+      />
       <Button onClick={togglePictureInPicture}>Picture-in-picture mode</Button>
     </Box>
   );

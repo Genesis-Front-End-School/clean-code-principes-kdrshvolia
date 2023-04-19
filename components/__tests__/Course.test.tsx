@@ -1,10 +1,10 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { CourseItem } from "../../common/types";
+import { PreviewCourse } from "../../common/types";
 import { Course } from "../Course";
 
 describe("<Course />", () => {
-  const TEST_PROPS: CourseItem = {
+  const TEST_PROPS: PreviewCourse = {
     containsLockedLessons: true,
     description:
       "Reignite your inner drive by managing factors that dampen your motivation.",
