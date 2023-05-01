@@ -28,7 +28,6 @@ class TokenService {
 
 export const tokenService = new TokenService();
 
-
 export class CoursesService {
   getCoursesList = async (token: string): Promise<Course[]> => {
     try {
@@ -48,7 +47,6 @@ export class CoursesService {
       throw new Error("An error occurred when trying to get courses list");
     }
   };
-
 
   getCourseById = async (token: string, id: string): Promise<PreviewCourse> => {
     try {
@@ -70,7 +68,3 @@ export class CoursesService {
 }
 
 export const coursesService = new CoursesService();
-
-
-
-
