@@ -7,7 +7,6 @@ interface UsePlaybackSpeedProps {
   videoRef: RefObject<HTMLVideoElement> | null;
 }
 
-
 export const usePlaybackSpeed = ({
   playbackStep = 0.5,
   maxPlaybackSpeed = 2,
@@ -27,7 +26,6 @@ export const usePlaybackSpeed = ({
         setPlaybackSpeed(playbackSpeed + playbackStep);
       }
     };
-
 
     window.addEventListener("keydown", increasePlayBackSpeed);
     return () => {
