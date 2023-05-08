@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import { Course } from "../common/types";
 import { CourseListItem } from "./CourseListItem";
 import { Box, Pagination } from "@mui/material";
@@ -16,7 +16,7 @@ export const CoursesList = ({ courses }: CoursesListProps) => {
     ITEMS_PER_PAGE
   );
 
-  const handleChange = (_: any, p: number) => {
+  const handleChange = (_: ChangeEvent<unknown>, p: number) => {
     setCurrentPage(p);
   };
 
@@ -29,7 +29,9 @@ export const CoursesList = ({ courses }: CoursesListProps) => {
       maxWidth="800px"
       margin="0 auto"
     >
-      {showedData.map((item) => <CourseListItem course={item} key={item.id} />)}
+      {showedData.map((item) => (
+        <CourseListItem course={item} key={item.id} />
+      ))}
       <Pagination
         count={pagesCount}
         size="large"

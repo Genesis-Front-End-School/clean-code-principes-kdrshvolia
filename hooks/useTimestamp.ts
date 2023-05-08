@@ -1,4 +1,5 @@
-import { RefObject, useEffect, useState } from "react";
+import { RefObject, SyntheticEvent, useEffect, useState } from "react";
+
 interface UseTimestampProps {
   src: string;
   videoRef: RefObject<HTMLVideoElement> | null;
@@ -13,9 +14,10 @@ export const useTimestamp = ({ src, videoRef }: UseTimestampProps) => {
     }
   }, [src]);
 
-  const handlePauseVideo = (e: any) => {
-    localStorage.setItem(src, String(e.target.currentTime));
-    setTimeStamp(e.target.currentTime);
+  const handlePauseVideo = (e: SyntheticEvent<HTMLVideoElement, Event>) => {
+    const target = e.target as HTMLVideoElement;
+    localStorage.setItem(src, String(target.currentTime));
+    setTimeStamp(target.currentTime);
   };
 
   const handlePlayVideo = () => {

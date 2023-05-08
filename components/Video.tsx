@@ -21,9 +21,11 @@ export const Video = ({
 }: VideoProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  const playOnHover = (e: any) => e.target.play();
+  const playOnHover = (e: React.MouseEvent<HTMLVideoElement, MouseEvent>) =>
+    (e.target as HTMLVideoElement).play();
 
-  const pauseOnHover = (e: any) => e.target.pause();
+  const pauseOnHover = (e: React.MouseEvent<HTMLVideoElement, MouseEvent>) =>
+    (e.target as HTMLVideoElement).pause();
 
   usePlaybackSpeed({ videoRef });
 

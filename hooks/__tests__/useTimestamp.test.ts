@@ -1,19 +1,24 @@
 import { act, renderHook } from "@testing-library/react";
 import { useTimestamp } from "../useTimestamp";
+import { SyntheticEvent } from "react";
+
+interface VideoRef {
+  current: HTMLVideoElement | null;
+}
 
 const localStorageMock = (() => {
-  let store = {};
+  let store: Record<string, string> = {};
   return {
-    getItem: function (key) {
+    getItem: function (key: string) {
       return store[key];
     },
-    setItem: function (key, value) {
+    setItem: function (key: string, value: string) {
       store[key] = value.toString();
     },
     clear: function () {
       store = {};
     },
-    removeItem: function (key) {
+    removeItem: function (key: string) {
       delete store[key];
     },
   };
@@ -23,11 +28,11 @@ Object.defineProperty(window, "localStorage", { value: localStorageMock });
 
 describe("useTimestamp", () => {
   const src = "test src";
-  const videoRef = {
+  const videoRef: VideoRef = {
     current: {
       duration: 60,
       currentTime: 0,
-    },
+    } as HTMLVideoElement,
   };
 
   const event = {
@@ -46,7 +51,9 @@ describe("useTimestamp", () => {
       result.current.handlePlayVideo();
     });
     act(() => {
-      result.current.handlePauseVideo(event);
+      result.current.handlePauseVideo(
+        event as unknown as SyntheticEvent<HTMLVideoElement, Event>
+      );
     });
 
     expect(result.current.timeStamp).toBe(8);

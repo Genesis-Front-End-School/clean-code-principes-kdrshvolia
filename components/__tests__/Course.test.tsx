@@ -74,15 +74,17 @@ describe("<Course />", () => {
   };
 
   test("Renders correct number of lessons", () => {
-    const { container } = render(<Course course={TEST_PROPS}></Course>);
+    const { container } = render(<Course course={TEST_PROPS} />);
     const lessonsList = container.querySelector("ul");
-    expect(lessonsList.children.length).toBe(3);
+
+    expect(lessonsList?.children.length).toBe(3);
   });
 
   test("Renders locked lessons correctly", () => {
-    const { container } = render(<Course course={TEST_PROPS}></Course>);
+    const { container } = render(<Course course={TEST_PROPS} />);
     // get locked icons
     const lessonsList = container.querySelectorAll("ul svg");
+
     expect(lessonsList.length).toBe(2);
   });
 });

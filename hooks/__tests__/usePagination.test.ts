@@ -17,13 +17,17 @@ describe("usePagination", () => {
   const ITEMS_PER_PAGE = 3;
 
   test("Calculates number of pages correctly", () => {
-    const { result } = renderHook(() => usePagination(paginationData, ITEMS_PER_PAGE));
+    const { result } = renderHook(() =>
+      usePagination(paginationData, ITEMS_PER_PAGE)
+    );
 
     expect(result.current.pagesCount).toBe(4);
   });
 
   test("Set next page correctly", () => {
-    const { result } = renderHook(() => usePagination(paginationData, ITEMS_PER_PAGE));
+    const { result } = renderHook(() =>
+      usePagination(paginationData, ITEMS_PER_PAGE)
+    );
     act(() => {
       result.current.next();
     });
@@ -32,7 +36,9 @@ describe("usePagination", () => {
   });
 
   test("Doesn't set negative page number", () => {
-    const { result } = renderHook(() => usePagination(paginationData, ITEMS_PER_PAGE));
+    const { result } = renderHook(() =>
+      usePagination(paginationData, ITEMS_PER_PAGE)
+    );
     act(() => {
       result.current.prev();
     });
@@ -41,7 +47,9 @@ describe("usePagination", () => {
   });
 
   test("Goes to the correct page", () => {
-    const { result } = renderHook(() => usePagination(paginationData, ITEMS_PER_PAGE));
+    const { result } = renderHook(() =>
+      usePagination(paginationData, ITEMS_PER_PAGE)
+    );
     act(() => {
       result.current.goToPage(3);
     });
@@ -50,12 +58,22 @@ describe("usePagination", () => {
   });
 
   test("Renders correct items", () => {
-    const { result } = renderHook(() => usePagination(paginationData, ITEMS_PER_PAGE));
-    expect(result.current.showedData).toStrictEqual(["test1", "test2", "test3"]);
+    const { result } = renderHook(() =>
+      usePagination(paginationData, ITEMS_PER_PAGE)
+    );
+    expect(result.current.showedData).toStrictEqual([
+      "test1",
+      "test2",
+      "test3",
+    ]);
     act(() => {
       result.current.next();
     });
 
-    expect(result.current.showedData).toStrictEqual(["test4", "test5", "test6"]);
+    expect(result.current.showedData).toStrictEqual([
+      "test4",
+      "test5",
+      "test6",
+    ]);
   });
 });
