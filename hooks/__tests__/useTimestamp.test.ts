@@ -35,17 +35,17 @@ describe("useTimestamp", () => {
     } as HTMLVideoElement,
   };
 
-  const event = {
-    target: { currentTime: 8 },
-  };
-
-  test("Set default timestamp correctly", () => {
+  test("Sets default timestamp correctly", () => {
     const { result } = renderHook(() => useTimestamp({ src, videoRef }));
 
     expect(result.current.timeStamp).toBe(0);
   });
 
-  test("Set timestamp correctly", () => {
+  test("Sets timestamp correctly", () => {
+    const event = {
+      target: { currentTime: 8 },
+    };
+
     const { result } = renderHook(() => useTimestamp({ src, videoRef }));
     act(() => {
       result.current.handlePlayVideo();
@@ -57,5 +57,24 @@ describe("useTimestamp", () => {
     });
 
     expect(result.current.timeStamp).toBe(8);
+  });
+
+  test("Sets timestamp from localstorage", () => {
+    localStorageMock.setItem('test src', "8");
+    const { result } = renderHook(() => useTimestamp({ src, videoRef }));
+
+    expect(result.current.timeStamp).toBe(8);
+  });
+
+  test("Sets video time to 0 if video is finished playing", () => {
+    localStorageMock.setItem('test src', "60");
+
+    const { result } = renderHook(() => useTimestamp({ src, videoRef }));
+
+    act(() => {
+      result.current.handlePlayVideo();
+    });
+
+    expect(videoRef.current?.currentTime).toBe(0);
   });
 });

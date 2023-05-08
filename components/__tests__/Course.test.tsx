@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { PreviewCourse } from "../../common/types";
 import { Course } from "../Course";
 
@@ -41,7 +41,7 @@ describe("<Course />", () => {
         order: 1,
         type: "video",
         status: "unlocked",
-        link: "https://wisey.app/videos/lack-of-motivation-how-to-overcome-it/lesson-1/AppleHLS1/lesson-1.m3u8",
+        link: "testurl1",
         previewImageLink:
           "https://wisey.app/assets/images/web/lessons-covers/lack-of-motivation-how-to-overcome-it/lesson-1",
         meta: null,
@@ -53,7 +53,7 @@ describe("<Course />", () => {
         order: 2,
         type: "video",
         status: "locked",
-        link: "https://wisey.app/videos/lack-of-motivation-how-to-overcome-it/lesson-2/AppleHLS1/lesson-2.m3u8",
+        link: "testurl2",
         previewImageLink:
           "https://wisey.app/assets/images/web/lessons-covers/lack-of-motivation-how-to-overcome-it/lesson-2",
         meta: null,
@@ -61,7 +61,7 @@ describe("<Course />", () => {
       {
         duration: 285,
         id: "29a8fc4d-b2a4-420b-80de-73ecda13f28e",
-        link: "https://wisey.app/videos/lack-of-motivation-how-to-overcome-it/lesson-3/AppleHLS1/lesson-3.m3u8",
+        link: "testurl3",
         meta: null,
         order: 3,
         previewImageLink:
@@ -72,6 +72,16 @@ describe("<Course />", () => {
       },
     ],
   };
+
+  test("Changes lesson title when certain lesson is clicked", () => {
+    const { container } = render(<Course course={TEST_PROPS} />);
+    const secondLessonButton = container.querySelectorAll("ul > div")[1];
+
+    fireEvent.click(secondLessonButton);
+
+    const lessonTitle = container.querySelectorAll("h5")[1];
+    expect(lessonTitle.textContent).toBe("Decision paralysis");
+  });
 
   test("Renders correct number of lessons", () => {
     const { container } = render(<Course course={TEST_PROPS} />);
