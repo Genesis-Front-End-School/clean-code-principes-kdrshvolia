@@ -4,7 +4,7 @@ import { usePlaybackSpeed } from "../hooks/usePlaybackSpeed";
 import { useTimestamp } from "../hooks/useTimestamp";
 import { Box, Button } from "@mui/material";
 
-interface VideoProps {
+export interface VideoProps {
   src: string;
   playMutedOnHover?: boolean;
   poster?: string;
