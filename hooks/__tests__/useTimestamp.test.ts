@@ -60,14 +60,14 @@ describe("useTimestamp", () => {
   });
 
   test("Sets timestamp from localstorage", () => {
-    localStorageMock.setItem('test src', "8");
+    localStorageMock.setItem("test src", "8");
     const { result } = renderHook(() => useTimestamp({ src, videoRef }));
 
     expect(result.current.timeStamp).toBe(8);
   });
 
   test("Sets video time to 0 if video is finished playing", () => {
-    localStorageMock.setItem('test src', "60");
+    localStorageMock.setItem("test src", "60");
 
     const { result } = renderHook(() => useTimestamp({ src, videoRef }));
 

@@ -27,7 +27,9 @@ export const Course: FC<CourseProps> = ({ course }: CourseProps) => {
 
   return (
     <Box>
-      <Typography variant="h4">{course.title}</Typography>
+      <Typography variant="h4" color="inherit">
+        {course.title}
+      </Typography>
       <Typography variant="h5">Lessons number: {lessons.length}</Typography>
       <Typography variant="body1">{course.description}</Typography>
       <Typography variant="h5">{lessons[selectedLessonIndex].title}</Typography>
