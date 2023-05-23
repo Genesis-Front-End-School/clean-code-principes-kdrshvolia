@@ -33,5 +33,4 @@ describe("<Video />", () => {
 
     expect(pauseStub).toHaveBeenCalled();
   });
-
 });
